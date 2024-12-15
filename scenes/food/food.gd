@@ -1,5 +1,5 @@
 extends Node2D
-class_name SnakePart
+class_name Food
 
 var color: Color:
 	set(color_in):
