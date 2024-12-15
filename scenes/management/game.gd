@@ -1,5 +1,7 @@
 extends Node
 
+signal died
+
 const SNAKE_PART: PackedScene = preload("res://scenes/snake/snake_part.tscn")
 const FOOD = preload("res://scenes/food/food.tscn")
 
@@ -56,6 +58,9 @@ func move(dir: int):
 	var prev_pos: Vector2i = %Snake.get_child(0).tile_position + DIR[dir]
 	if eat(prev_pos):
 		return
+	if collide(prev_pos):
+		died.emit()
+		return
 	
 	var prev_color: Color = %Snake.get_child(0).color
 	
@@ -82,6 +87,16 @@ func eat(prev_pos: Vector2i) -> bool:
 			score += 1
 		add_snake_part(prev_pos, food_color)
 		return true
+	return false
+
+func collide(prev_pos: Vector2i) -> bool:
+	var snake_parts: Dictionary = {}
+	for snake_part: SnakePart in %Snake.get_children().slice(1):
+		snake_parts[snake_part.tile_position] = snake_part
+
+	if snake_parts.has(%Snake.get_child(0).tile_position):
+		if snake_parts[%Snake.get_child(0).tile_position].color != %Snake.get_child(0).color:
+			return true
 	return false
 
 func add_snake_part(pos: Vector2i, food_color: Color):
