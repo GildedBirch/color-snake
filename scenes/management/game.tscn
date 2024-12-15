@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ciw4phvlajic4"]
+
+[node name="Game" type="Node"]
+
+[node name="Snake" type="Node" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Food" type="Node" parent="."]
