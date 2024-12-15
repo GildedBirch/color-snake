@@ -232,23 +232,4 @@ position = Vector2(304, 224)
 [node name="Food" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -3.0
-offset_right = 20.0
-offset_bottom = 17.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.892866, 0.889646, 0.843144, 1)
-theme_override_font_sizes/font_size = 14
-text = "TEST"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="timeout" from="GameTickTimer" to="." method="_on_game_tick_timer_timeout"]
