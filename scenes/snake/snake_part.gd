@@ -1,11 +1,7 @@
 extends ColorNode2D
 class_name SnakePart
 
-# Called when the node enters the scene tree for the first time.
+var tile_position: Vector2i = Vector2i(0,0)
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	%ColorRect.color = Color(randf(), randf(), randf())
