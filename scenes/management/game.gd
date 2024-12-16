@@ -1,6 +1,6 @@
 extends Node
 
-signal died
+signal died(score: int, snake_length: int)
 
 const SNAKE_PART: PackedScene = preload("res://scenes/snake/snake_part.tscn")
 const FOOD: PackedScene = preload("res://scenes/food/food.tscn")
@@ -22,11 +22,15 @@ var input_direction: int = LEFT
 var prev_dir: int = LEFT
 
 var score: int = 0
+var snake_length: int:
+	get():
+		return %Snake.get_children().size()
 
 @export var tile_size: int = 16
 @export var map_size: Vector2i = Vector2i(20, 15)
 
 func _ready() -> void:
+	died.connect(game_over)
 	initialize_snake(10)
 
 func _input(_event: InputEvent) -> void:
@@ -59,7 +63,7 @@ func move(dir: int):
 	if eat(prev_pos):
 		return
 	if collide(prev_pos):
-		died.emit()
+		died.emit(score, snake_length)
 		return
 	
 	var prev_color: Color = %Snake.get_child(0).color
@@ -115,6 +119,10 @@ func spawn_food():
 	food.position = tile_to_world_pos(pos)
 	food.color = colors.pick_random()
 
+func game_over(_score: int, _snake_length: int):
+	%GameTickTimer.stop()
+	%ScoreLabel.visible = false
+
 func tile_to_world_pos(tile_position: Vector2i) -> Vector2i:
 	return Vector2i(tile_position.x * tile_size, tile_position.y * tile_size)
 
@@ -122,4 +130,4 @@ func _on_game_tick_timer_timeout() -> void:
 	move(input_direction)
 	if randf() > 0.8:
 		spawn_food()
-	%ScoreLabel.text = "Score: %s  |  Length: %s" % [score, %Snake.get_children().size()]
+	%ScoreLabel.text = "Score: %s  |  Length: %s" % [score, snake_length]
