@@ -3,7 +3,7 @@ extends Node
 signal died
 
 const SNAKE_PART: PackedScene = preload("res://scenes/snake/snake_part.tscn")
-const FOOD = preload("res://scenes/food/food.tscn")
+const FOOD: PackedScene = preload("res://scenes/food/food.tscn")
 
 const colors: Array[Color] = [
 	Color.RED,
@@ -78,9 +78,9 @@ func eat(prev_pos: Vector2i) -> bool:
 	for food_item: Food in %Food.get_children():
 		food[food_item.tile_position] = food_item
 	
-	if food.has(%Snake.get_child(0).tile_position):
-		var food_color = food[%Snake.get_child(0).tile_position].color
-		food[%Snake.get_child(0).tile_position].queue_free()
+	if food.has(prev_pos):
+		var food_color = food[prev_pos].color
+		food[prev_pos].queue_free()
 		if food_color != %Snake.get_child(0).color:
 			score += 2
 		else:
@@ -94,8 +94,8 @@ func collide(prev_pos: Vector2i) -> bool:
 	for snake_part: SnakePart in %Snake.get_children().slice(1):
 		snake_parts[snake_part.tile_position] = snake_part
 
-	if snake_parts.has(%Snake.get_child(0).tile_position):
-		if snake_parts[%Snake.get_child(0).tile_position].color != %Snake.get_child(0).color:
+	if snake_parts.has(prev_pos):
+		if snake_parts[prev_pos].color != %Snake.get_child(0).color:
 			return true
 	return false
 
