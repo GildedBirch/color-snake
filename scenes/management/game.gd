@@ -31,7 +31,7 @@ var snake_length: int:
 
 func _ready() -> void:
 	died.connect(game_over)
-	initialize_snake(10)
+	start_new_game()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_up"):
@@ -42,6 +42,16 @@ func _input(_event: InputEvent) -> void:
 		input_direction = LEFT
 	if Input.is_action_just_pressed("ui_right"):
 		input_direction = RIGHT
+
+func start_new_game():
+	%Snake.get_children().all(func(snake_part): snake_part.queue_free(); return true)
+	%Food.get_children().all(func(food): food.queue_free(); return true)
+	score = 0
+	input_direction = LEFT
+	prev_dir = LEFT
+	initialize_snake(3)
+	%GameTickTimer.wait_time = 0.5
+	%GameTickTimer.start()
 
 func initialize_snake(length: int) -> void:
 	var color = colors.pick_random()
