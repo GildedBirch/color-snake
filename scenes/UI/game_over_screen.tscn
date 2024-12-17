@@ -3,66 +3,21 @@
 [ext_resource type="Script" path="res://scenes/UI/game_over_screen.gd" id="1_huwru"]
 [ext_resource type="FontFile" uid="uid://pjb4kvtvqa7k" path="res://fonts/monogram.ttf" id="2_0u57d"]
 
-[node name="GameOverScreen" type="PanelContainer"]
-self_modulate = Color(1, 1, 1, 0)
-z_index = 100
-texture_filter = 1
+[node name="GameOver" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_huwru")
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-layout_mode = 2
-color = Color(0.164194, 0.164213, 0.211548, 0.854902)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-alignment = 1
-
-[node name="Control" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 10.0
-alignment = 1
-
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/PanelContainer"]
-layout_mode = 2
-color = Color(0.0687983, 0.0687983, 0.0687983, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+script = ExtResource("1_huwru")
 
-[node name="Spacer1" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GameOverLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="GameOverLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("2_0u57d")
@@ -71,11 +26,11 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer4" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScoreTextLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ScoreTextLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("2_0u57d")
@@ -84,7 +39,7 @@ text = "Score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.771287, 0.476653, 5.77569e-07, 1)
@@ -94,11 +49,11 @@ text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer3" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LengthTextLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LengthTextLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("2_0u57d")
@@ -107,7 +62,7 @@ text = "Length"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LengthLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LengthLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.771287, 0.476653, 5.77569e-07, 1)
@@ -117,52 +72,44 @@ text = "00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="Spacer5" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Spacer5" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 alignment = 1
 
-[node name="RetryButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="RetryButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("2_0u57d")
 text = "RETRY"
 
-[node name="MenuButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("2_0u57d")
 text = "MENU"
 
-[node name="Spacer6" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Spacer6" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer5" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Control2" type="Control" parent="VBoxContainer"]
+[node name="Spacer5" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3

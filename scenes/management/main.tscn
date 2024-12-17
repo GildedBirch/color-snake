@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bed1011tqnxcj"]
+[gd_scene load_steps=6 format=3 uid="uid://bed1011tqnxcj"]
 
 [ext_resource type="PackedScene" uid="uid://ciw4phvlajic4" path="res://scenes/management/game.tscn" id="1_k2ju3"]
 [ext_resource type="Script" path="res://scenes/management/main.gd" id="1_pu3ot"]
+[ext_resource type="PackedScene" uid="uid://dbyblbyxkh12j" path="res://scenes/UI/menu_background.tscn" id="3_2fvg0"]
 [ext_resource type="PackedScene" uid="uid://ew17aok8n00a" path="res://scenes/UI/game_over_screen.tscn" id="3_5eksu"]
+[ext_resource type="PackedScene" uid="uid://dn6r153jh21lh" path="res://scenes/UI/main_menu.tscn" id="4_mxltd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_pu3ot")
@@ -13,6 +15,16 @@ unique_name_in_owner = true
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource("3_5eksu")]
+[node name="MenuBackground" parent="UI" instance=ExtResource("3_2fvg0")]
+unique_name_in_owner = true
+
+[node name="MainMenu" parent="UI/MenuBackground/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="0" instance=ExtResource("4_mxltd")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GameOverScreen" parent="UI/MenuBackground/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="1" instance=ExtResource("3_5eksu")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 2
+
+[editable path="UI/MenuBackground"]

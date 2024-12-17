@@ -1,4 +1,4 @@
-extends PanelContainer
+extends VBoxContainer
 
 @onready var retry_button: Button = %RetryButton
 @onready var menu_button: Button = %MenuButton

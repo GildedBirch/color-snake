@@ -11,6 +11,7 @@ const colors: Array[Color] = [
 	Color.BLUE,
 ]
 
+#Directions
 enum {UP=1, DOWN=-1, LEFT=2, RIGHT=-2}
 const DIR: Dictionary = {
 	UP : Vector2i.UP,
@@ -21,6 +22,7 @@ const DIR: Dictionary = {
 var input_direction: int = LEFT
 var prev_dir: int = LEFT
 
+#Scoring
 var score: int = 0
 var snake_length: int:
 	get():
@@ -31,7 +33,6 @@ var snake_length: int:
 
 func _ready() -> void:
 	died.connect(game_over)
-	start_new_game()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_up"):
@@ -50,6 +51,8 @@ func start_new_game():
 	input_direction = LEFT
 	prev_dir = LEFT
 	initialize_snake(3)
+	%ScoreLabel.visible = true
+	%ScoreLabel.text = "Score: %s  |  Length: %s" % [score, 3]
 	%GameTickTimer.wait_time = 0.5
 	%GameTickTimer.start()
 
@@ -100,6 +103,7 @@ func eat(prev_pos: Vector2i) -> bool:
 		else:
 			score += 1
 		add_snake_part(prev_pos, food_color)
+		%GameTickTimer.wait_time += 0.1
 		return true
 	return false
 
