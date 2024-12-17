@@ -11,6 +11,8 @@ script = ExtResource("1_pu3ot")
 
 [node name="Game" parent="." instance=ExtResource("1_k2ju3")]
 unique_name_in_owner = true
+tile_size = null
+map_size = null
 
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

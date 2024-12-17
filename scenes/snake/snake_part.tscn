@@ -1,12 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxkoamhnqds3d"]
+[gd_scene load_steps=4 format=3 uid="uid://bxkoamhnqds3d"]
 
 [ext_resource type="Script" path="res://scenes/snake/snake_part.gd" id="1_nq3f4"]
+[ext_resource type="Texture2D" uid="uid://dqs6507esm6pf" path="res://textures/snake_atlas.png" id="2_dnwnq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5eol"]
+resource_local_to_scene = true
+atlas = ExtResource("2_dnwnq")
+region = Rect2(0, 16, 16, 16)
 
 [node name="SnakePart" type="Node2D"]
 script = ExtResource("1_nq3f4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(16, 16)
 offset_right = 16.0
 offset_bottom = 16.0
+
+[node name="SnakeSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_o5eol")

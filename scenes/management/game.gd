@@ -73,6 +73,7 @@ func move(dir: int):
 	prev_dir = dir
 	
 	var prev_pos: Vector2i = %Snake.get_child(0).tile_position + DIR[dir]
+	var ahead_pos: Vector2i
 	if eat(prev_pos):
 		return
 	if collide(prev_pos):
@@ -89,6 +90,11 @@ func move(dir: int):
 		prev_color = snake_part.color
 		snake_part.color = new_color
 		snake_part.position = tile_to_world_pos(snake_part.tile_position)
+		snake_part.set_rotation_and_part(prev_pos, ahead_pos)
+		ahead_pos = snake_part.tile_position
+	
+	if %Snake.get_child(0).part != SnakePart.HEAD: %Snake.get_child(0).part = SnakePart.HEAD
+	elif %Snake.get_child(-1).part != SnakePart.TAIL: %Snake.get_child(-1).part = SnakePart.TAIL
 
 func eat(prev_pos: Vector2i) -> bool:
 	var food: Dictionary = {}
@@ -103,7 +109,6 @@ func eat(prev_pos: Vector2i) -> bool:
 		else:
 			score += 1
 		add_snake_part(prev_pos, food_color)
-		%GameTickTimer.wait_time += 0.1
 		return true
 	return false
 
@@ -123,6 +128,8 @@ func add_snake_part(pos: Vector2i, food_color: Color):
 	snake_part.color = food_color
 	snake_part.tile_position = pos
 	snake_part.position = tile_to_world_pos(pos)
+	%Snake.get_child(0).part = SnakePart.BODY
+	snake_part.part = SnakePart.HEAD
 	%Snake.move_child(snake_part, 0)
 
 func spawn_food():
