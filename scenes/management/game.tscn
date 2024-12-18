@@ -138,6 +138,14 @@ position = Vector2(128, 0)
 [node name="Wall10" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(144, 0)
 
+[node name="Wall67" parent="Walls" instance=ExtResource("2_xcare")]
+position = Vector2(176, 80)
+random_color = true
+
+[node name="Wall68" parent="Walls" instance=ExtResource("2_xcare")]
+position = Vector2(224, 80)
+random_color = true
+
 [node name="Wall11" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(160, 0)
 

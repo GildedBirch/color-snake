@@ -8,5 +8,8 @@ var color: Color:
 
 var tile_position: Vector2i = Vector2i(0,0)
 
+@export var random_color: bool = false
+
 func _ready() -> void:
-	%ColorRect.color = Color.BLACK
+	color = Color.BLACK
+	tile_position = Vector2i(int(position.x)/16, int(position.y)/16)

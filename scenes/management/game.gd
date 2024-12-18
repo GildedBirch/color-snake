@@ -5,12 +5,6 @@ signal died(score: int, snake_length: int)
 const SNAKE_PART: PackedScene = preload("res://scenes/snake/snake_part.tscn")
 const FOOD: PackedScene = preload("res://scenes/food/food.tscn")
 
-const colors: Array[Color] = [
-	Color.CYAN,
-	Color.YELLOW,
-	Color.MAGENTA,
-]
-
 #Directions
 enum {UP=1, DOWN=-1, LEFT=2, RIGHT=-2}
 const DIR: Dictionary = {
@@ -21,13 +15,15 @@ const DIR: Dictionary = {
 }
 var input_direction: int = LEFT
 var prev_dir: int = LEFT
-
 #Scoring
+enum {EASY, MEDIUM, HARD}
+var difficulty: int = HARD
 var score: int = 0
 var snake_length: int:
 	get():
 		return %Snake.get_children().size()
-
+var wall_tile_positions: Dictionary
+var crossed_color: bool = false
 
 @export var default_game_speed: float = 0.5
 @onready var game_speed: float = default_game_speed
@@ -36,15 +32,16 @@ var snake_length: int:
 
 func _ready() -> void:
 	died.connect(game_over)
+	wall_tile_positions = get_walls()
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("up"):
 		input_direction = UP
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("down"):
 		input_direction = DOWN
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("left"):
 		input_direction = LEFT
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("right"):
 		input_direction = RIGHT
 	if %Snake.get_child_count() >= 1:
 		%Snake.get_child(0).set_head_rotation(%Snake.get_child(1).tile_position, DIR[input_direction])
@@ -52,6 +49,8 @@ func _input(_event: InputEvent) -> void:
 func start_new_game():
 	%Snake.get_children().all(func(snake_part): snake_part.queue_free(); return true)
 	%Food.get_children().all(func(food): food.queue_free(); return true)
+	for wall: Wall in %Walls.get_children():
+		if wall.random_color: wall.color = Refs.difficulty_colors[difficulty].pick_random()
 	score = 0
 	input_direction = UP
 	prev_dir = UP
@@ -62,7 +61,7 @@ func start_new_game():
 	%GameTickTimer.start()
 
 func initialize_snake(length: int) -> void:
-	var color = colors.pick_random()
+	var color = Refs.difficulty_colors[difficulty].pick_random()
 	for i in range(length):
 		var snake_part: SnakePart = SNAKE_PART.instantiate()
 		%Snake.add_child(snake_part)
@@ -121,9 +120,16 @@ func collide(prev_pos: Vector2i) -> bool:
 	for snake_part: SnakePart in %Snake.get_children().slice(1):
 		snake_parts[snake_part.tile_position] = snake_part
 
+	snake_parts.merge(wall_tile_positions)
 	if snake_parts.has(prev_pos):
-		if snake_parts[prev_pos].color != %Snake.get_child(0).color:
+		if snake_parts[prev_pos].color != %Snake.get_child(0).color or crossed_color:
+			print("ded")
 			return true
+		else:
+			crossed_color = true
+			print("Crossed")
+			return false
+	crossed_color = false
 	return false
 
 func add_snake_part(pos: Vector2i, food_color: Color):
@@ -162,11 +168,17 @@ func spawn_food():
 	%Food.add_child(food)
 	food.tile_position = pos
 	food.position = tile_to_world_pos(pos)
-	food.color = colors.pick_random()
+	food.color = Refs.difficulty_colors[difficulty].pick_random()
 
 func game_over(_score: int, _snake_length: int):
 	%GameTickTimer.stop()
 	%ScoreLabel.visible = false
+
+func get_walls() -> Dictionary:
+	var walls: Dictionary
+	for wall: Wall in %Walls.get_children():
+		walls[wall.tile_position] = wall
+	return walls
 
 func tile_to_world_pos(tile_position: Vector2i) -> Vector2i:
 	return Vector2i(tile_position.x * tile_size, tile_position.y * tile_size)
