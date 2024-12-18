@@ -22,7 +22,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.78021, 0.77024, 0.700131, 1)
 theme_override_fonts/font = ExtResource("1_3etyq")
 theme_override_font_sizes/font_size = 32
-text = "SNAKE"
+text = "CMYK SNAKE"
 horizontal_alignment = 1
 vertical_alignment = 1
 

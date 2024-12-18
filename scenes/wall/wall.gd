@@ -9,4 +9,4 @@ var color: Color:
 var tile_position: Vector2i = Vector2i(0,0)
 
 func _ready() -> void:
-	%ColorRect.color = Color.DIM_GRAY
+	%ColorRect.color = Color.BLACK

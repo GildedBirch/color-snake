@@ -16,8 +16,6 @@ sources/0 = SubResource("TileSetAtlasSource_bdacx")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_0t4bd")
-tile_size = null
-map_size = null
 
 [node name="GameTickTimer" type="Timer" parent="."]
 unique_name_in_owner = true
