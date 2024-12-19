@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://ciw4phvlajic4"]
+[gd_scene load_steps=8 format=4 uid="uid://ciw4phvlajic4"]
 
-[ext_resource type="Script" path="res://scenes/management/game.gd" id="1_0t4bd"]
+[ext_resource type="Script" path="res://scenes/levels/game.gd" id="1_0t4bd"]
 [ext_resource type="Texture2D" uid="uid://cv3y5t1w3070j" path="res://textures/floor_tiles.png" id="1_b0vg6"]
 [ext_resource type="PackedScene" uid="uid://t82845wtbudw" path="res://scenes/wall/wall.tscn" id="2_xcare"]
+[ext_resource type="FontFile" uid="uid://pjb4kvtvqa7k" path="res://fonts/monogram.ttf" id="4_n74jt"]
+[ext_resource type="AudioStream" uid="uid://die0vqu4w3amb" path="res://sounds/theplax__crunch_4.wav" id="5_s5po1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdacx"]
 texture = ExtResource("1_b0vg6")
@@ -14,7 +16,7 @@ texture = ExtResource("1_b0vg6")
 [sub_resource type="TileSet" id="TileSet_tlysk"]
 sources/0 = SubResource("TileSetAtlasSource_bdacx")
 
-[node name="Game" type="Node"]
+[node name="LevelOne" type="Node" groups=["level"]]
 script = ExtResource("1_0t4bd")
 
 [node name="GameTickTimer" type="Timer" parent="."]
@@ -32,231 +34,391 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Wall" parent="Walls" instance=ExtResource("2_xcare")]
+wall_type = 8
+wall_rotation = -90
 
 [node name="Wall41" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 16)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall42" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 32)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall43" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 48)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall44" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 64)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall45" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 80)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall46" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 96)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall47" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 112)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall48" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 128)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall49" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 144)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall50" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 160)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall51" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 176)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall52" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 192)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall53" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 208)
+wall_type = 6
+wall_rotation = -90
 
 [node name="Wall54" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 16)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall55" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 32)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall56" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 48)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall57" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 64)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall58" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 80)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall59" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 96)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall60" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 112)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall61" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 128)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall62" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 144)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall63" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 160)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall64" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 176)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall65" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 192)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall66" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 208)
+wall_type = 6
+wall_rotation = 90
 
 [node name="Wall2" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(16, 0)
+wall_type = 6
 
 [node name="Wall3" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(32, 0)
+wall_type = 6
 
 [node name="Wall4" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(48, 0)
+wall_type = 6
 
 [node name="Wall5" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(64, 0)
+wall_type = 6
 
 [node name="Wall6" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(80, 0)
+wall_type = 6
 
 [node name="Wall7" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(96, 0)
+wall_type = 6
 
 [node name="Wall8" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(112, 0)
+wall_type = 6
 
 [node name="Wall9" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(128, 0)
+wall_type = 6
 
 [node name="Wall10" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(144, 0)
-
-[node name="Wall67" parent="Walls" instance=ExtResource("2_xcare")]
-position = Vector2(176, 80)
-random_color = true
-
-[node name="Wall68" parent="Walls" instance=ExtResource("2_xcare")]
-position = Vector2(224, 80)
-random_color = true
+wall_type = 6
 
 [node name="Wall11" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(160, 0)
+wall_type = 6
 
 [node name="Wall12" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(176, 0)
+wall_type = 6
 
 [node name="Wall13" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(192, 0)
+wall_type = 6
 
 [node name="Wall14" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(208, 0)
+wall_type = 6
 
 [node name="Wall15" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(224, 0)
+wall_type = 6
 
 [node name="Wall16" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(240, 0)
+wall_type = 6
 
 [node name="Wall17" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(256, 0)
+wall_type = 6
 
 [node name="Wall18" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(272, 0)
+wall_type = 6
 
 [node name="Wall19" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(288, 0)
+wall_type = 6
 
 [node name="Wall20" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 0)
+wall_type = 8
 
 [node name="Wall21" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(0, 224)
+wall_type = 8
+wall_rotation = 180
 
 [node name="Wall22" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(16, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall23" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(32, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall24" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(48, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall25" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(64, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall26" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(80, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall27" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(96, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall28" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(112, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall29" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(128, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall30" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(144, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall31" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(160, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall32" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(176, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall33" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(192, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall34" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(208, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall35" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(224, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall36" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(240, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall37" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(256, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall38" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(272, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall39" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(288, 224)
+wall_type = 6
+wall_rotation = 180
 
 [node name="Wall40" parent="Walls" instance=ExtResource("2_xcare")]
 position = Vector2(304, 224)
+wall_type = 8
+wall_rotation = 90
 
 [node name="Food" type="Node" parent="."]
 unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+[node name="ScoreBar" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
+self_modulate = Color(1, 1, 1, 0)
+offset_top = -1.0
+offset_right = 320.0
+offset_bottom = 15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ScoreBar"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreTextLabel" type="Label" parent="CanvasLayer/ScoreBar/HBoxContainer"]
 texture_filter = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -3.0
-offset_right = 20.0
-offset_bottom = 17.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.892866, 0.889646, 0.843144, 1)
-theme_override_font_sizes/font_size = 14
-text = "Score: 0  |  Length: 3"
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_n74jt")
+theme_override_font_sizes/font_size = 16
+text = "Score:"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.529412, 0, 1)
+theme_override_fonts/font = ExtResource("4_n74jt")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="LengthTextLabel" type="Label" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_n74jt")
+theme_override_font_sizes/font_size = 16
+text = "Length:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LengthLabel" type="Label" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.958331, 0.527818, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("4_n74jt")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="CanvasLayer/ScoreBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EatAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_s5po1")
 
 [connection signal="timeout" from="GameTickTimer" to="." method="_on_game_tick_timer_timeout"]

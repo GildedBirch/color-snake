@@ -1,4 +1,5 @@
 extends Node
+class_name Game
 
 signal died(score: int, snake_length: int)
 
@@ -25,8 +26,12 @@ var snake_length: int:
 var wall_tile_positions: Dictionary
 var crossed_color: bool = false
 
+@export var start_position: Vector2i = Vector2i(10, 10)
 @export var default_game_speed: float = 0.5
-@onready var game_speed: float = default_game_speed
+var game_speed: float:
+	set(speed_in):
+		game_speed = speed_in
+		%GameTickTimer.wait_time = game_speed
 @export var tile_size: int = 16
 @export var map_size: Vector2i = Vector2i(20, 15)
 
@@ -55,9 +60,9 @@ func start_new_game():
 	input_direction = UP
 	prev_dir = UP
 	initialize_snake(3)
-	%ScoreLabel.visible = true
-	%ScoreLabel.text = "Score: %s  |  Length: %s" % [score, 3]
-	%GameTickTimer.wait_time = game_speed
+	spawn_food()
+	%ScoreBar.visible = true
+	game_speed = default_game_speed
 	%GameTickTimer.start()
 
 func initialize_snake(length: int) -> void:
@@ -66,10 +71,10 @@ func initialize_snake(length: int) -> void:
 		var snake_part: SnakePart = SNAKE_PART.instantiate()
 		%Snake.add_child(snake_part)
 		snake_part.color = color
-		snake_part.tile_position = Vector2i(floori(map_size.x/2), floori(map_size.y/2) + i)
+		snake_part.tile_position = Vector2i(start_position.x, start_position.y + i)
 		snake_part.position = Vector2i(
-			floori(map_size.x/2)*tile_size,
-			floori(map_size.y/2)*tile_size + i*tile_size
+			start_position.x*tile_size,
+			start_position.y*tile_size + i*tile_size
 			)
 	%Snake.get_child(0).part = SnakePart.HEAD
 	%Snake.get_child(-1).part = SnakePart.TAIL
@@ -105,6 +110,8 @@ func eat(prev_pos: Vector2i) -> bool:
 		food[food_item.tile_position] = food_item
 	
 	if food.has(prev_pos):
+		%EatAudio.pitch_scale = randf_range(0.5, 1.5)
+		%EatAudio.play()
 		var food_color = food[prev_pos].color
 		food[prev_pos].queue_free()
 		if food_color != %Snake.get_child(0).color:
@@ -112,6 +119,8 @@ func eat(prev_pos: Vector2i) -> bool:
 		else:
 			score += 1
 		add_snake_part(prev_pos, food_color)
+		increase_speed()
+		spawn_food()
 		return true
 	return false
 
@@ -123,11 +132,9 @@ func collide(prev_pos: Vector2i) -> bool:
 	snake_parts.merge(wall_tile_positions)
 	if snake_parts.has(prev_pos):
 		if snake_parts[prev_pos].color != %Snake.get_child(0).color or crossed_color:
-			print("ded")
 			return true
 		else:
 			crossed_color = true
-			print("Crossed")
 			return false
 	crossed_color = false
 	return false
@@ -163,16 +170,43 @@ func update_snake_z_index() -> void:
 		i -= 1
 
 func spawn_food():
-	var pos: Vector2i = Vector2i(randi_range(1, map_size.x-2), randi_range(1, map_size.y-2))
-	var food: Food = FOOD.instantiate()
-	%Food.add_child(food)
-	food.tile_position = pos
-	food.position = tile_to_world_pos(pos)
-	food.color = Refs.difficulty_colors[difficulty].pick_random()
+	var obstacles: Dictionary = get_snake()
+	obstacles.merge(get_walls())
+	obstacles.merge(get_food())
+	
+	var tries := 10
+	while true:
+		var pos: Vector2i = Vector2i(randi_range(1, map_size.x-1), randi_range(1, map_size.y-1))
+		if obstacles.has(pos):
+			tries -= 1
+			if tries <= 0: return
+			continue
+		var food: Food = FOOD.instantiate()
+		%Food.add_child(food)
+		food.tile_position = pos
+		food.position = tile_to_world_pos(pos)
+		food.color = Refs.difficulty_colors[difficulty].pick_random()
+		return
+
+func increase_speed():
+	if score <= 10:
+		game_speed = default_game_speed
+	elif score <= 20:
+		game_speed = default_game_speed - 0.1
+	elif score <= 30:
+		game_speed = default_game_speed - 0.15
+	elif score <= 40:
+		game_speed = default_game_speed - 0.2
 
 func game_over(_score: int, _snake_length: int):
 	%GameTickTimer.stop()
-	%ScoreLabel.visible = false
+	%ScoreBar.visible = false
+
+func get_snake() -> Dictionary:
+	var snake_parts: Dictionary
+	for snake_part: SnakePart in %Snake.get_children():
+		snake_parts[snake_part.tile_position] = snake_part
+	return snake_parts
 
 func get_walls() -> Dictionary:
 	var walls: Dictionary
@@ -180,11 +214,16 @@ func get_walls() -> Dictionary:
 		walls[wall.tile_position] = wall
 	return walls
 
+func get_food() -> Dictionary:
+	var foods: Dictionary
+	for food: Food in %Food.get_children():
+		foods[food.tile_position] = food
+	return foods
+
 func tile_to_world_pos(tile_position: Vector2i) -> Vector2i:
 	return Vector2i(tile_position.x * tile_size, tile_position.y * tile_size)
 
 func _on_game_tick_timer_timeout() -> void:
 	move(input_direction)
-	if randf() > 0.8:
-		spawn_food()
-	%ScoreLabel.text = "Score: %s  |  Length: %s" % [score, snake_length]
+	%ScoreLabel.text = "%s" % score
+	%LengthLabel.text = "%s" % snake_length

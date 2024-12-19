@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://t82845wtbudw"]
+[gd_scene load_steps=4 format=3 uid="uid://t82845wtbudw"]
 
 [ext_resource type="Script" path="res://scenes/wall/wall.gd" id="1_g8n7i"]
+[ext_resource type="Texture2D" uid="uid://d2vipe7oexirb" path="res://textures/wall_atlas.png" id="2_5wi8u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjhk0"]
+resource_local_to_scene = true
+atlas = ExtResource("2_5wi8u")
+region = Rect2(48, 16, 16, 16)
 
 [node name="Wall" type="Node2D"]
 script = ExtResource("1_g8n7i")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="WallSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 16)
-offset_right = 16.0
-offset_bottom = 16.0
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_tjhk0")

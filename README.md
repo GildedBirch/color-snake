@@ -2,9 +2,5 @@
 https://itch.io/jam/classics
 
 Font: Monogram by datagoblin https://datagoblin.itch.io/monogram
-
-
-To-do:
-	- Teleports
-	- Levels
-	- Speed increase
+Eating sound: Crunch 4 by theplax https://freesound.org/people/theplax/sounds/608639/
+Music: Music Loop Bundle by TallBeard https://tallbeard.itch.io/music-loop-bundle

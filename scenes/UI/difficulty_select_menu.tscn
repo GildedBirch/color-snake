@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu36fp6bclhgt"]
+
+[ext_resource type="Script" path="res://scenes/UI/difficulty_select_menu.gd" id="1_og7pv"]
+[ext_resource type="FontFile" uid="uid://pjb4kvtvqa7k" path="res://fonts/monogram.ttf" id="2_8jkjt"]
+[ext_resource type="Theme" uid="uid://bn1504y7awdwl" path="res://textures/snake_theme.tres" id="3_035bs"]
+
+[node name="DifficultySelectMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_og7pv")
+
+[node name="Spacer1" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DifficultySelectLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8jkjt")
+theme_override_font_sizes/font_size = 32
+text = "DIFFICULTY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer4" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Spacer5" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+alignment = 1
+
+[node name="EasyButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_035bs")
+text = "EASY"
+
+[node name="MediumButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_035bs")
+text = "MEDIUM"
+
+[node name="HardButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_035bs")
+text = "HARD"
+
+[node name="Spacer6" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer5" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3

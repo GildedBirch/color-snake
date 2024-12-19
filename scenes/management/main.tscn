@@ -1,16 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bed1011tqnxcj"]
+[gd_scene load_steps=14 format=3 uid="uid://bed1011tqnxcj"]
 
-[ext_resource type="PackedScene" uid="uid://ciw4phvlajic4" path="res://scenes/management/game.tscn" id="1_k2ju3"]
+[ext_resource type="PackedScene" uid="uid://ciw4phvlajic4" path="res://scenes/levels/level_one.tscn" id="1_k2ju3"]
 [ext_resource type="Script" path="res://scenes/management/main.gd" id="1_pu3ot"]
+[ext_resource type="AudioStream" uid="uid://bidwa4wi8huvv" path="res://sounds/Sketchbook 2024-10-14.ogg" id="2_r8w7g"]
 [ext_resource type="PackedScene" uid="uid://dbyblbyxkh12j" path="res://scenes/UI/menu_background.tscn" id="3_2fvg0"]
 [ext_resource type="PackedScene" uid="uid://ew17aok8n00a" path="res://scenes/UI/game_over_screen.tscn" id="3_5eksu"]
+[ext_resource type="PackedScene" uid="uid://bn765hapidc5j" path="res://scenes/levels/level_two.tscn" id="3_6ponf"]
+[ext_resource type="AudioStream" uid="uid://b5ildnvuhjjcj" path="res://sounds/Sketchbook 2024-10-30.ogg" id="4_gvpci"]
+[ext_resource type="PackedScene" uid="uid://bphxfsxwsjh6h" path="res://scenes/levels/level_three.tscn" id="4_hsju5"]
 [ext_resource type="PackedScene" uid="uid://dn6r153jh21lh" path="res://scenes/UI/main_menu.tscn" id="4_mxltd"]
+[ext_resource type="AudioStream" uid="uid://bcqnskvpv7ff6" path="res://sounds/Sketchbook 2024-11-07.ogg" id="6_2o011"]
+[ext_resource type="PackedScene" uid="uid://dcab0hk7smb4l" path="res://scenes/UI/level_select_menu.tscn" id="6_qqdl3"]
+[ext_resource type="PackedScene" uid="uid://cu36fp6bclhgt" path="res://scenes/UI/difficulty_select_menu.tscn" id="7_p6tej"]
+[ext_resource type="AudioStream" uid="uid://bqbpmx67jvo4h" path="res://sounds/Sketchbook 2024-11-29.ogg" id="8_uspl8"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_pu3ot")
-
-[node name="Game" parent="." instance=ExtResource("1_k2ju3")]
-unique_name_in_owner = true
+main_menu_music = ExtResource("2_r8w7g")
+level_one = ExtResource("1_k2ju3")
+music_one = ExtResource("4_gvpci")
+level_two = ExtResource("3_6ponf")
+music_two = ExtResource("6_2o011")
+level_three = ExtResource("4_hsju5")
+music_three = ExtResource("8_uspl8")
 
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -26,5 +38,20 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="LevelSelectMenu" parent="UI/MenuBackground/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="2" instance=ExtResource("6_qqdl3")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="DifficultySelectMenu" parent="UI/MenuBackground/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" index="3" instance=ExtResource("7_p6tej")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+volume_db = -20.0
+autoplay = true
 
 [editable path="UI/MenuBackground"]

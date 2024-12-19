@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcab0hk7smb4l"]
+
+[ext_resource type="Script" path="res://scenes/UI/level_select_menu.gd" id="1_pa4gu"]
+[ext_resource type="FontFile" uid="uid://pjb4kvtvqa7k" path="res://fonts/monogram.ttf" id="2_qmrkp"]
+[ext_resource type="Theme" uid="uid://bn1504y7awdwl" path="res://textures/snake_theme.tres" id="3_p8dpf"]
+
+[node name="LevelSelectMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_pa4gu")
+
+[node name="Spacer1" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelSelectLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_qmrkp")
+theme_override_font_sizes/font_size = 32
+text = "LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer4" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Spacer5" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+alignment = 1
+
+[node name="LevelOneButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_p8dpf")
+text = "ARENA"
+
+[node name="LevelTwoButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_p8dpf")
+text = "APARTMENTS"
+
+[node name="LevelThreeButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_p8dpf")
+text = "LABORATORY"
+
+[node name="Spacer6" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer5" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
